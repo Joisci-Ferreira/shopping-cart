@@ -1,4 +1,4 @@
-const cartList = document.querySelector('.cart__items');
+ const cartList = document.querySelector('.cart__items');
 
 function createProductImageElement(imageSource) {
   const img = document.createElement('img');
@@ -25,15 +25,6 @@ function createProductItemElement({ id: sku, title: name, thumbnail: image }) {
 
   return section;
 }
-const listaProdutos = async () => {
-  const itens = document.querySelector('.items'); 
-  const data = await fetchProducts('computador');
-  data.results.forEach((result, index) => { 
-    itens.appendChild(createProductItemElement(result));
-    document.querySelectorAll('.item__add')[index] 
-    .addEventListener('click', fetchItem);
-  });
-};
 
 function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
@@ -43,14 +34,13 @@ function cartItemClickListener(event) {
   event.target.remove();
 }
 
-function createCartItemElement({ sku, name, salePrice }) {
-  const li = document.createElement('li');
-  li.className = 'cart__item';
-  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;
-  li.addEventListener('click', cartItemClickListener);
+function createCartItemElement({ id: sku, title: name, price: salePrice }) {
+  const li = document.createElement('li'); 
+  li.className = 'cart__item'; 
+  li.innerText = `SKU: ${sku} | NAME: ${name} | PRICE: $${salePrice}`;  
+  li.addEventListener('click', cartItemClickListener); 
   return li;
 }
-
 const addItem = () => {
   const addButtons = document.querySelectorAll('.item__add');
   addButtons.forEach((element) => element.addEventListener('click', async () => {
@@ -59,8 +49,15 @@ const addItem = () => {
     cartList.appendChild(createCartItemElement(obj));
   }));
 };
+  const listaProdutos = async () => {
+  const data = await fetchProducts('computador');
+  const itens = document.querySelector('.items'); 
+  data.results.forEach((obj) => { 
+    itens.appendChild(createProductItemElement(obj));
+  });
+  addItem();
+}; 
 
 window.onload = () => {
   listaProdutos();
-  addItem();
  };

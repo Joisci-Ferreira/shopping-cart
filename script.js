@@ -40,7 +40,6 @@ const salvarItens = () => {
 
 function cartItemClickListener(event) {
   event.target.remove();
-  salvarItens();
 }
 
 function createCartItemElement({ id: sku, title: name, price: salePrice }) {
@@ -56,6 +55,7 @@ const addItem = () => {
     const itemId = getSkuFromProductItem(element.parentElement);
     const obj = await fetchItem(itemId);
     cartList.appendChild(createCartItemElement(obj));
+    salvarItens();
   }));
 };
   const listaProdutos = async () => {

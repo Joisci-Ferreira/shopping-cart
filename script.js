@@ -40,6 +40,7 @@ function getSkuFromProductItem(item) {
 
 function cartItemClickListener(event) {
   event.target.remove();
+  salvarItens();
 }
 
 function createCartItemElement({ id: sku, title: name, price: salePrice }) {
@@ -71,6 +72,7 @@ const esvaziarCarrinho = document.querySelector('.empty-cart');
 esvaziarCarrinho.addEventListener('click', () => {
   cartList.innerHTML = '';
   localStorage.clear();
+  salvarItens();
 });
 
 window.onload = () => {

@@ -29,19 +29,19 @@ function createProductItemElement({ id: sku, title: name, thumbnail: image }) {
 function getSkuFromProductItem(item) {
   return item.querySelector('span.item__sku').innerText;
 }
- const salvarItens = () => {
-  const item = document.querySelector('.cart__items').innerHTML;
-  localStorage.setItem('cartItems', item);
+const salvarItens = () => {
+  localStorage.setItem('salvarItems', cartList.innerHTML); 
 };
-
- const recuperarItens = () => {
-   localStorage.getItem('cartItems');
- }; 
 
 function cartItemClickListener(event) {
   event.target.remove();
   salvarItens();
 }
+const recuperarItens = () => {
+  cartList.innerHTML = localStorage.getItem('salvarItems'); 
+  const cartItem = document.querySelectorAll('.cart__item');
+  cartItem.forEach((item) => item.addEventListener('click', cartItemClickListener));
+};
 
 function createCartItemElement({ id: sku, title: name, price: salePrice }) {
   const li = document.createElement('li'); 
@@ -52,7 +52,7 @@ function createCartItemElement({ id: sku, title: name, price: salePrice }) {
 }
 
  function addLoading(element) {
-  const itemsContainer = document.querySelector('.container');
+  const itemsContainer = document.querySelector('ol');
   const loadingElement = document.createElement(element);
   loadingElement.innerHTML = 'carregando...';
   loadingElement.className = 'loading';
@@ -88,7 +88,6 @@ const esvaziarCarrinho = document.querySelector('.empty-cart');
 esvaziarCarrinho.addEventListener('click', () => {
   cartList.innerHTML = '';
   localStorage.clear();
-  salvarItens();
 });
 
 window.onload = () => {

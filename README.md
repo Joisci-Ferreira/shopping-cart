@@ -14,7 +14,7 @@ Não deixe de usar nossas dicas de escrita de README de projetos, e deixe sua cr
 
 ## Projeto
 
-Projeto desenvolvido no módulo de fundamentros do curso da Trybe, para o desenvolvimento desse projeto foi utilizado a API do Mercado Livre para criar a listagem de produtos e um carrinho de compras totalmente dinâmico.
+Projeto desenvolvido no módulo de fundamentos do curso da Trybe, para o desenvolvimento desse projeto foi utilizado a API do Mercado Livre para criar a listagem de produtos e um carrinho de compras totalmente dinâmico.
 
 ## Tecnologias
 
